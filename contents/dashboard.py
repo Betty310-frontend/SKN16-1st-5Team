@@ -197,6 +197,21 @@ def show_dashboard():
             .reset_index()
         )
 
+        col1, col2 = st.columns(2)
+
+        with col1:
+            year_list = total_df["기준연월"].str.split("-").str[0].unique()
+            st.selectbox("연도", ["전체"] + list(year_list), key="year")
+        with col2:
+            pass
+
+        selected_year = st.session_state["year"]
+
+        if selected_year != "전체":
+            total_df = total_df[
+                total_df["기준연월"].str.split("-").str[0] == selected_year
+            ]
+
         # 스택 영역 차트 추가
         fig = go.Figure()
 
@@ -205,6 +220,7 @@ def show_dashboard():
                 x=total_df["기준연월"],
                 y=total_df["LPG"],
                 name="LPG",
+                mode="lines",
                 fill="tonexty",
                 line=dict(color="#C6E2AE", width=0),
                 fillcolor="rgba(198, 226, 174, 0.7)",
@@ -219,6 +235,7 @@ def show_dashboard():
                 x=total_df["기준연월"],
                 y=total_df["경유"],
                 name="경유",
+                mode="lines",
                 fill="tonexty",
                 line=dict(color="#9EC3E1", width=0),
                 fillcolor="rgba(158, 195, 225, 0.7)",
@@ -233,6 +250,7 @@ def show_dashboard():
                 x=total_df["기준연월"],
                 y=total_df["휘발유"],
                 name="휘발유",
+                mode="lines",
                 fill="tonexty",
                 line=dict(color="#F4A7A7", width=0),
                 fillcolor="rgba(244, 167, 167, 0.7)",
@@ -243,10 +261,18 @@ def show_dashboard():
         )
 
         # 레이아웃 설정
+        ymax = total_df["휘발유"].max()
+
+        if selected_year != "전체":
+            fig.update_xaxes(
+                tickmode="array", tickvals=total_df["기준연월"].tolist(), tickangle=-30
+            )
+
         fig.update_layout(
             # title="연료별 자동차 등록대수 구성비 변화",
             xaxis_title="연도",
             yaxis_title="등록대수",
+            yaxis=dict(range=[0, ymax * 1.15], tickformat=",.0f"),
             height=500,
             showlegend=True,
             legend=dict(
