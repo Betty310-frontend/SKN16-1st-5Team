@@ -35,11 +35,12 @@ SKN 16기 1차 단위프로젝트
 
 # 📄 화면 설계서
 분석 그래프 PAGE (연료별 자동차 등록대수, 연료별 비용 추이, 지역별 히트맵)
-![alt text](화면설계서1.png)
-![alt text](화면설계서2.png)
+![화면설계서1](https://github.com/user-attachments/assets/f3609736-61f4-403c-ae38-0fa59ac854eb)
+![화면설계서2](https://github.com/user-attachments/assets/2c6ab44a-f16c-4bcb-8a79-ebdb5a4e8eb3)
+
 
 FAQ PAGE (브랜드별 FAQ)
-![alt text](화면설계서3.png)
+![화면설계서3](https://github.com/user-attachments/assets/514ce548-ca51-4476-a1f4-8f9910daf7e0)
 
 
 
