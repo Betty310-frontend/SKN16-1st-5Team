@@ -99,8 +99,8 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 ![실제 화면1](https://github.com/user-attachments/assets/18f775f3-103e-4fa3-b4ca-4793a6ffce70)
-![실제 화면2](https://github.com/user-attachments/assets/50dc0527-0f9e-4731-ac04-95910b9d5d2c)
 ![실제 화면3](https://github.com/user-attachments/assets/50bd722e-7ef9-4f46-be73-ab798eb84ff1)
+![실제 화면2](https://github.com/user-attachments/assets/50dc0527-0f9e-4731-ac04-95910b9d5d2c)
 ![실제 화면4](https://github.com/user-attachments/assets/6186bb6f-9416-4fd5-be6d-9b767264a768)
 
 
