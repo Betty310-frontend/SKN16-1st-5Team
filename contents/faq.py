@@ -22,7 +22,7 @@ def show_faq(selected_maker):
 
     @st.cache_data
     def load_all_data():
-        FILE_PATH = "SKN16-1st-5Team/docs"
+        FILE_PATH = "docs"
         # FILE_PATH = "/content/drive/MyDrive/5조"
         df_benz = load_faq(f"{FILE_PATH}/benz_faq.csv", "Benz")
         df_genesis = load_faq(f"{FILE_PATH}/genesis_faq.csv", "Genesis")

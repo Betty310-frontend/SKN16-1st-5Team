@@ -8,7 +8,7 @@ from streamlit_folium import st_folium
 @st.cache_data
 def load_data():
     # 파일 read
-    FILE_PATH = "SKN16-1st-5Team/docs"
+    FILE_PATH = "docs"
     # FILE_PATH = "/content/drive/MyDrive/5조"
     fuel_df = pd.read_csv(f"{FILE_PATH}/유류비.csv", encoding="CP949")
     car_count_df = pd.read_excel(f"{FILE_PATH}/시도별_연료별_등록현황.xlsx")
