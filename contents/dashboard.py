@@ -3,7 +3,6 @@ import pandas as pd
 import folium
 from folium.plugins import HeatMap
 from streamlit_folium import st_folium
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
@@ -198,20 +197,18 @@ def show_dashboard():
             .reset_index()
         )
 
-        # st.dataframe(total_df)
-
         # 스택 영역 차트 추가
         fig = go.Figure()
 
         fig.add_trace(
             go.Scatter(
                 x=total_df["기준연월"],
-                y=total_df["휘발유"],
-                name="휘발유",
+                y=total_df["LPG"],
+                name="LPG",
                 fill="tonexty",
-                line=dict(color="#F4A7A7", width=0),
-                fillcolor="#F4A7A7",
-                hovertemplate="<b style='color: #F4A7A7;'>휘발유:</b><br>"
+                line=dict(color="#C6E2AE", width=0),
+                fillcolor="rgba(198, 226, 174, 0.7)",
+                hovertemplate="<b style='color: #C6E2AE;'>LPG:</b><br>"
                 + "%{y:,.0f}대<br>"
                 + "<extra></extra>",
             )
@@ -224,7 +221,7 @@ def show_dashboard():
                 name="경유",
                 fill="tonexty",
                 line=dict(color="#9EC3E1", width=0),
-                fillcolor="#9EC3E1",
+                fillcolor="rgba(158, 195, 225, 0.7)",
                 hovertemplate="<b style='color: #9EC3E1;'>경유:</b><br>"
                 + "%{y:,.0f}대<br>"
                 + "<extra></extra>",
@@ -234,12 +231,12 @@ def show_dashboard():
         fig.add_trace(
             go.Scatter(
                 x=total_df["기준연월"],
-                y=total_df["LPG"],
-                name="LPG",
+                y=total_df["휘발유"],
+                name="휘발유",
                 fill="tonexty",
-                line=dict(color="#C6E2AE", width=0),
-                fillcolor="#C6E2AE",
-                hovertemplate="<b style='color: #C6E2AE;'>LPG:</b><br>"
+                line=dict(color="#F4A7A7", width=0),
+                fillcolor="rgba(244, 167, 167, 0.7)",
+                hovertemplate="<b style='color: #F4A7A7;'>휘발유:</b><br>"
                 + "%{y:,.0f}대<br>"
                 + "<extra></extra>",
             )
