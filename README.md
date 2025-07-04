@@ -62,6 +62,30 @@ FAQ PAGE (브랜드별 FAQ)
 
 <br>
 
+
+# 📁 프로젝트 구조
+```
+SKN16-1st-5Team/
+├── main.py                 # 메인 애플리케이션
+├── requirements.txt        # Python 의존성 라이브러리
+├── install_dependencies.bat # Windows 설치 스크립트
+├── README.md              # 프로젝트 문서
+├── .gitignore             # Git 제외 파일 설정
+├── contents/              # 애플리케이션 모듈
+│   ├── dashboard.py       # 대시보드 기능
+│   └── faq.py             # FAQ 기능
+└── docs/                  # 데이터 파일
+    ├── benz_faq.csv
+    ├── genesis_faq.csv
+    ├── kia_faq.csv
+    ├── 시도별_연료별_등록현황.xlsx
+    ├── 유류비.csv
+    └── 지역별 좌표.csv
+```
+
+
+<br>
+
 # 💻 실제 화면
 <b>실행 방법</b>
 ```
@@ -75,8 +99,6 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 <br>
-
-![실제화면 FAQ](https://cdn.discordapp.com/attachments/1389547032212930722/1390512993304973404/image.png?ex=686887a4&is=68673624&hm=9d9ac6dc29cc803641d876cb7adbc6298b390ffb7cb89ab1a47866aa571d21f9&)
 
 # 🖊 회고
 
