@@ -70,8 +70,13 @@ def show_dashboard():
                 y=df["휘발유 등록수"],
                 name="휘발유 등록수",
                 marker_color="#F4A7A7",
-                yaxis="y",
                 legendgroup="bar",
+                legendgrouptitle_text="등록대수",
+                xaxis="x",
+                yaxis="y",
+                hovertemplate="<b>%{x}년</b><br>"
+                + "<b style='color: #F4A7A7;'>휘발유 등록수:</b> %{y:,.0f}대<br>"
+                + "<extra></extra>",
             ),
             secondary_y=False,
         )
@@ -84,6 +89,9 @@ def show_dashboard():
                 marker_color="#9EC3E1",
                 yaxis="y",
                 legendgroup="bar",
+                hovertemplate="<b>%{x}년</b><br>"
+                + "<b style='color: #9EC3E1;'>경유 등록수:</b> %{y:,.0f}대<br>"
+                + "<extra></extra>",
             ),
             secondary_y=False,
         )
@@ -96,6 +104,9 @@ def show_dashboard():
                 marker_color="#C6E2AE",
                 yaxis="y",
                 legendgroup="bar",
+                hovertemplate="<b>%{x}년</b><br>"
+                + "<b style='color: #C6E2AE;'>LPG 등록수:</b> %{y:,.0f}대<br>"
+                + "<extra></extra>",
             ),
             secondary_y=False,
         )
@@ -110,6 +121,11 @@ def show_dashboard():
                 line=dict(width=2),
                 marker=dict(size=8, symbol="circle", color="blue"),
                 yaxis="y2",
+                legendgrouptitle_text="유류비",
+                legendgroup="scatter",
+                hovertemplate="<b>%{x}년</b><br>"
+                + "<b style='color: blue;'>휘발유 유류비:</b> %{y:,.0f}원<br>"
+                + "<extra></extra>",
             ),
             secondary_y=True,
         )
@@ -122,6 +138,10 @@ def show_dashboard():
                 line=dict(width=2),
                 marker=dict(size=8, symbol="square", color="orange"),
                 yaxis="y2",
+                legendgroup="scatter",
+                hovertemplate="<b>%{x}년</b><br>"
+                + "<b style='color: orange;'>경유 유류비:</b> %{y:,.0f}원<br>"
+                + "<extra></extra>",
             ),
             secondary_y=True,
         )
@@ -135,6 +155,10 @@ def show_dashboard():
                 line=dict(width=2),
                 marker=dict(size=8, symbol="diamond", color="green"),
                 yaxis="y2",
+                legendgroup="scatter",
+                hovertemplate="<b>%{x}년</b><br>"
+                + "<b style='color: green;'>LPG 유류비:</b> %{y:,.0f}원<br>"
+                + "<extra></extra>",
             ),
             secondary_y=True,
         )
@@ -147,7 +171,14 @@ def show_dashboard():
             height=500,
             showlegend=True,
             legend=dict(
-                orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1
+                orientation="h",
+                yanchor="bottom",
+                xanchor="right",
+                x=1,
+                y=1.02,
+                bgcolor="rgba(255,255,255,0.8)",
+                bordercolor="rgba(0,0,0,0.2)",
+                borderwidth=1,
             ),
         )
 
