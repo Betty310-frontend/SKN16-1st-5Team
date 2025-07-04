@@ -28,6 +28,9 @@ SKN 16기 1차 단위프로젝트
 <img src="https://img.shields.io/badge/selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white">
 <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+<img src="https://img.shields.io/badge/folium-77B829?style=for-the-badge&logo=folium&logoColor=white">
+<img src="https://img.shields.io/badge/plotly-7A76FF?style=for-the-badge&logo=plotly&logoColor=white">
+<img src="https://img.shields.io/badge/matplotlib-19E57F?style=for-the-badge&logo=matplotlib&logoColor=white">
 <img src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
 
 
@@ -99,8 +102,8 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 ![실제 화면1](https://github.com/user-attachments/assets/18f775f3-103e-4fa3-b4ca-4793a6ffce70)
+![실제 화면3](https://github.com/user-attachments/assets/50bd722e-7ef9-4f46-be73-ab798eb84ff1)
 ![실제 화면2](https://github.com/user-attachments/assets/50dc0527-0f9e-4731-ac04-95910b9d5d2c)
-
 ![실제 화면4](https://github.com/user-attachments/assets/6186bb6f-9416-4fd5-be6d-9b767264a768)
 
 
