@@ -30,6 +30,7 @@ def show_dashboard():
         monthly_tot = (
             car_count_df.groupby("기준연월")[["휘발유", "경유", "LPG"]]
             .sum()
+            .div(24)
             .reset_index()
         )
         monthly_tot["year"] = monthly_tot["기준연월"].str[:4].astype(int)
@@ -199,23 +200,72 @@ def show_dashboard():
 
         # st.dataframe(total_df)
 
-        fig, ax = plt.subplots(figsize=(8, 4))
+        # 스택 영역 차트 추가
+        fig = go.Figure()
 
-        ax.stackplot(
-            total_df["기준연월"],
-            total_df["휘발유"],
-            total_df["경유"],
-            total_df["LPG"],
-            labels=["휘발유", "경유", "LPG"],
-            colors=["#F4A7A7", "#9EC3E1", "#C6E2AE"],
+        fig.add_trace(
+            go.Scatter(
+                x=total_df["기준연월"],
+                y=total_df["휘발유"],
+                name="휘발유",
+                fill="tonexty",
+                line=dict(color="#F4A7A7", width=0),
+                fillcolor="#F4A7A7",
+                hovertemplate="<b style='color: #F4A7A7;'>휘발유:</b><br>"
+                + "%{y:,.0f}대<br>"
+                + "<extra></extra>",
+            )
         )
 
-        ax.legend(loc="upper left")
-        ax.set_xlabel("연도")
-        ax.set_ylabel("등록대수")
+        fig.add_trace(
+            go.Scatter(
+                x=total_df["기준연월"],
+                y=total_df["경유"],
+                name="경유",
+                fill="tonexty",
+                line=dict(color="#9EC3E1", width=0),
+                fillcolor="#9EC3E1",
+                hovertemplate="<b style='color: #9EC3E1;'>경유:</b><br>"
+                + "%{y:,.0f}대<br>"
+                + "<extra></extra>",
+            )
+        )
 
-        st.pyplot(fig)
-        plt.close()
+        fig.add_trace(
+            go.Scatter(
+                x=total_df["기준연월"],
+                y=total_df["LPG"],
+                name="LPG",
+                fill="tonexty",
+                line=dict(color="#C6E2AE", width=0),
+                fillcolor="#C6E2AE",
+                hovertemplate="<b style='color: #C6E2AE;'>LPG:</b><br>"
+                + "%{y:,.0f}대<br>"
+                + "<extra></extra>",
+            )
+        )
+
+        # 레이아웃 설정
+        fig.update_layout(
+            # title="연료별 자동차 등록대수 구성비 변화",
+            xaxis_title="연도",
+            yaxis_title="등록대수",
+            height=500,
+            showlegend=True,
+            legend=dict(
+                orientation="h",
+                yanchor="bottom",
+                xanchor="right",
+                x=1,
+                y=1.02,
+                bgcolor="rgba(255,255,255,0.8)",
+                bordercolor="rgba(0,0,0,0.2)",
+                borderwidth=1,
+            ),
+            hovermode="x unified",
+        )
+
+        st.plotly_chart(fig, use_container_width=True)
 
     with st.container():
         st.markdown("##### 20년 ~ 25년 연료별 등록대수")
