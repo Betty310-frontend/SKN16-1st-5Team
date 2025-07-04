@@ -63,6 +63,17 @@ FAQ PAGE (브랜드별 FAQ)
 <br>
 
 # 💻 실제 화면
+<b>실행 방법</b>
+```
+# 1. git clone
+git clone https://github.com/SKNETWORKS-FAMILY-AICAMP/SKN16-1st-5Team.git
+
+# 2. 의존성 설치
+pip install -r requirements.txt
+
+# 3. 애플리케이션 실행
+streamlit run main.py
+```
 <br>
 
 # 🖊 회고
