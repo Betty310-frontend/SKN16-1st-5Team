@@ -3,6 +3,9 @@ import pandas as pd
 import folium
 from folium.plugins import HeatMap
 from streamlit_folium import st_folium
+import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 @st.cache_data
@@ -21,10 +24,167 @@ def show_dashboard():
     fuel_df, car_count_df, region_df = load_data()
 
     with st.container():
-        st.write("유류비, 연료별 자동차 등록대수 변화")
+        st.markdown("##### 연도별 등록대수 & 유류비 요약")
+
+        # (a) 월 단위 총합 → 연도로 변환 → 연간 합계
+        monthly_tot = (
+            car_count_df.groupby("기준연월")[["휘발유", "경유", "LPG"]]
+            .sum()
+            .reset_index()
+        )
+        monthly_tot["year"] = monthly_tot["기준연월"].str[:4].astype(int)
+        yearly_tot = (
+            monthly_tot.groupby("year")[["휘발유", "경유", "LPG"]].sum().reset_index()
+        )
+
+        # (a) 연도 컬럼 추가 → 연도별 평균
+        fuel_df["year"] = fuel_df["yearmonth"].str[:4].astype(int)
+        yearly_cost = fuel_df.groupby(["year", "fueltype"])["cost"].mean().reset_index()
+
+        # pivot 후 순서 강제
+        yearly_cost_pivot = yearly_cost.pivot(
+            index="year", columns="fueltype", values="cost"
+        ).reset_index()
+        yearly_cost_pivot = yearly_cost_pivot[["year", "휘발유", "경유", "LPG"]]
+
+        df = pd.merge(yearly_tot, yearly_cost_pivot, on="year", how="inner")
+        df.columns = [
+            "연도",
+            "휘발유 등록수",
+            "경유 등록수",
+            "LPG 등록수",
+            "휘발유 유류비",
+            "경유 유류비",
+            "LPG 유류비",
+        ]
+
+        # st.dataframe(df.set_index('연도'))
+
+        # Plotly를 사용한 이중 축 그래프
+        fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+        # (1) 왼쪽 축: 스택드 바 (등록수)
+        fig.add_trace(
+            go.Bar(
+                x=df["연도"],
+                y=df["휘발유 등록수"],
+                name="휘발유 등록수",
+                marker_color="#F4A7A7",
+                yaxis="y",
+                legendgroup="bar",
+            ),
+            secondary_y=False,
+        )
+
+        fig.add_trace(
+            go.Bar(
+                x=df["연도"],
+                y=df["경유 등록수"],
+                name="경유 등록수",
+                marker_color="#9EC3E1",
+                yaxis="y",
+                legendgroup="bar",
+            ),
+            secondary_y=False,
+        )
+
+        fig.add_trace(
+            go.Bar(
+                x=df["연도"],
+                y=df["LPG 등록수"],
+                name="LPG 등록수",
+                marker_color="#C6E2AE",
+                yaxis="y",
+                legendgroup="bar",
+            ),
+            secondary_y=False,
+        )
+
+        # (2) 오른쪽 축: 라인 (유류비)
+        fig.add_trace(
+            go.Scatter(
+                x=df["연도"],
+                y=df["휘발유 유류비"],
+                name="휘발유 유류비",
+                mode="lines+markers",
+                line=dict(width=2),
+                marker=dict(size=8, symbol="circle", color="blue"),
+                yaxis="y2",
+            ),
+            secondary_y=True,
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=df["연도"],
+                y=df["경유 유류비"],
+                name="경유 유류비",
+                mode="lines+markers",
+                line=dict(width=2),
+                marker=dict(size=8, symbol="square", color="orange"),
+                yaxis="y2",
+            ),
+            secondary_y=True,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=df["연도"],
+                y=df["LPG 유류비"],
+                name="LPG 유류비",
+                mode="lines+markers",
+                line=dict(width=2),
+                marker=dict(size=8, symbol="diamond", color="green"),
+                yaxis="y2",
+            ),
+            secondary_y=True,
+        )
+
+        # 레이아웃 설정
+        fig.update_layout(
+            # title="연도별 등록대수 & 연평균 유류비",
+            xaxis_title="연도",
+            barmode="stack",
+            height=500,
+            showlegend=True,
+            legend=dict(
+                orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1
+            ),
+        )
+
+        # Y축 레이블 설정
+        fig.update_yaxes(title_text="등록대수", secondary_y=False)
+        fig.update_yaxes(title_text="연평균 유류비 (원)", secondary_y=True)
+
+        st.plotly_chart(fig, use_container_width=True)
 
     with st.container():
-        st.write("연료별 자동차 등록대수 구성비 변화")
+        st.markdown("##### 연료별 자동차 등록대수 구성비 변화")
+        # 연도별 전체 등록대수 집계
+        total_df = (
+            car_count_df.groupby("기준연월")[["휘발유", "경유", "LPG"]]
+            .sum()
+            .reset_index()
+        )
+
+        # st.dataframe(total_df)
+
+        fig, ax = plt.subplots(figsize=(8, 4))
+
+        ax.stackplot(
+            total_df["기준연월"],
+            total_df["휘발유"],
+            total_df["경유"],
+            total_df["LPG"],
+            labels=["휘발유", "경유", "LPG"],
+            colors=["#F4A7A7", "#9EC3E1", "#C6E2AE"],
+        )
+
+        ax.legend(loc="upper left")
+        ax.set_xlabel("연도")
+        ax.set_ylabel("등록대수")
+
+        st.pyplot(fig)
+        plt.close()
 
     with st.container():
         st.markdown("##### 20년 ~ 25년 연료별 등록대수")
