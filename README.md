@@ -4,19 +4,19 @@ SKN 16기 1차 단위프로젝트
 <br>
 # 📌 프로젝트 소개
 
-연료비 변화에 따른 자동차 유형 등록 추이
-
 전국 자동차의 등록 현황을 시각적으로 분석하고<br>
 대표적인 자동차 기업들의 자주 묻는 질문(FAQ)을 제공하는 시스템
+
+연료비 변화에 따른 자동차 유형 등록 추이
 
 <br>
 
 # 🫂 팀 소개
 |구성|이름|담당|
 |:---:|:---:|:---:|
-|조장|한혜경|기획, 웹 화면 구성/개발(Streamlit), 문서|
+|조장|한혜경|기획, 웹 화면 구성/개발(Streamlit)|
 |조원|신지윤|웹 화면 구성/개발(Streamlit)|
-|조원|신희정|데이터 크롤링(FAQ)|
+|조원|신희정|데이터 크롤링(FAQ, 유가정보)|
 |조원|김민석|데이터 크롤링(연료별 자동차 등록수)|
 |조원|양승호|ERD, 데이터 정제, 발표|
 
@@ -26,6 +26,7 @@ SKN 16기 1차 단위프로젝트
 <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
 <img src="https://img.shields.io/badge/beautifulsoup-80F5D2?style=for-the-badge&logo=beautifulsoup&logoColor=white">
 <img src="https://img.shields.io/badge/selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white">
+<img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white">
 
@@ -35,9 +36,8 @@ SKN 16기 1차 단위프로젝트
 
 # 📄 화면 설계서
 분석 그래프 PAGE (연료별 자동차 등록대수, 연료별 비용 추이, 지역별 히트맵)
-![화면설계서1](https://github.com/user-attachments/assets/f3609736-61f4-403c-ae38-0fa59ac854eb)
-![화면설계서2](https://github.com/user-attachments/assets/2c6ab44a-f16c-4bcb-8a79-ebdb5a4e8eb3)
-
+![화면설계서1](https://github.com/user-attachments/assets/7e75f9b6-1ac2-4ada-ab64-142c481f1b2c)
+![화면설계서2](https://github.com/user-attachments/assets/6f0da357-18b5-4e7b-910d-10f20cec3da4)
 
 FAQ PAGE (브랜드별 FAQ)
 ![화면설계서3](https://github.com/user-attachments/assets/514ce548-ca51-4476-a1f4-8f9910daf7e0)
@@ -98,6 +98,12 @@ pip install -r requirements.txt
 # 3. 애플리케이션 실행
 streamlit run main.py
 ```
+![실제 화면1](https://github.com/user-attachments/assets/18f775f3-103e-4fa3-b4ca-4793a6ffce70)
+![실제 화면2](https://github.com/user-attachments/assets/50dc0527-0f9e-4731-ac04-95910b9d5d2c)
+
+![실제 화면4](https://github.com/user-attachments/assets/6186bb6f-9416-4fd5-be6d-9b767264a768)
+
+
 <br>
 
 # 🖊 회고
