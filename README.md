@@ -14,11 +14,11 @@ SKN 16기 1차 단위프로젝트
 # 🫂 팀 소개
 |구성|이름|담당|
 |:---:|:---:|:---:|
-|조장|한혜경|기획, 웹 화면 구성/개발(Streamlit)|
+|조장|한혜경|기획, 웹 화면 구성/개발(Streamlit), 문서|
 |조원|신지윤|웹 화면 구성/개발(Streamlit)|
 |조원|신희정|데이터 크롤링(FAQ)|
 |조원|김민석|데이터 크롤링(연료별 자동차 등록수)|
-|조원|양승호|ERD, 데이터 정제, 나모한거지?|
+|조원|양승호|ERD, 데이터 정제, 발표|
 
 <br>
 
@@ -75,6 +75,8 @@ pip install -r requirements.txt
 streamlit run main.py
 ```
 <br>
+
+![실제화면 FAQ](https://cdn.discordapp.com/attachments/1389547032212930722/1390512993304973404/image.png?ex=686887a4&is=68673624&hm=9d9ac6dc29cc803641d876cb7adbc6298b390ffb7cb89ab1a47866aa571d21f9&)
 
 # 🖊 회고
 
